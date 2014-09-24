@@ -1,8 +1,8 @@
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GLib
-from dragBox import DragBox
-from dropArea import DropArea
+from DragBox import DragBox
+from DropArea import DropArea
 
 class TestWindow(Gtk.Window):
     def __init__(self):

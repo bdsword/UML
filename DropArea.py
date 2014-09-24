@@ -16,7 +16,8 @@ class DropArea(Gtk.Layout):
     def add_drag_box(self, drag_box, x, y):
         self.put(drag_box, x, y)
         drag_box.connect('button-press-event', self.on_drag_box_button_press)
-        drag_box.connect('button_release_event', self.on_drag_box_button_release)
+        drag_box.connect('button_release_event',
+                         self.on_drag_box_button_release)
         drag_box.connect('motion-notify-event', self.on_drag_box_mouse_motion)
 
     def on_drag_box_button_press(self, widget, event):

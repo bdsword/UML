@@ -1,11 +1,11 @@
-import dragBox
+import DragBox
 from gi.repository import Gtk
 
 
 class TestWindow(Gtk.Window):
     def __init__(self):
         super(TestWindow, self).__init__(title="TestWindow")
-        self.drag_box = dragBox.DragBox()
+        self.drag_box = DragBox.DragBox()
         self.add(self.drag_box)
 
 test_window = TestWindow()

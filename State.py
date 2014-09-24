@@ -1,0 +1,4 @@
+
+NORMAL = 1
+SELECTED = 2
+DRAGGING = 3

@@ -1,6 +1,6 @@
 from gi.repository import Gtk
 from point import Point
-
+import State
 
 class DropArea(Gtk.Layout):
     def __init__(self):
@@ -26,7 +26,7 @@ class DropArea(Gtk.Layout):
 
     def on_drag_box_button_release(self, widget, event):
         # print('on drag box button release')
-        pass
+        widget.set_state = State.SELECTED
 
     def on_drag_box_mouse_motion(self, widget, event):
         (x, y) = self.get_absolute_coord(widget, event.x, event.y)

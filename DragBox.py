@@ -1,4 +1,5 @@
 from gi.repository import Gtk
+import State
 
 
 class DragBox(Gtk.EventBox):
@@ -8,3 +9,7 @@ class DragBox(Gtk.EventBox):
     """
     def __init__(self):
         super(DragBox, self).__init__()
+        self.state = State.NORMAL
+
+    def set_state(self, state):
+        self.state = state

@@ -7,12 +7,6 @@ class DropArea(Gtk.Layout):
     def __init__(self):
         super(DropArea, self).__init__()
         self.press_point = None  # in drag-box's coordinate space
-        # self.set_events(Gdk.EventMask.BUTTON_PRESS_MASK)
-        # self.set_events(Gdk.EventMask.BUTTON_RELEASE_MASK)
-        # self.set_events(Gdk.EventMask.POINTER_MOTION_MASK)
-        # self.connect('button-press-event', self.on_button_press)
-        # self.connect('button-release-event', self.on_button_release)
-        # self.connect('motion-notify-event', self.on_mouse_motion)
 
     def add_drag_box(self, drag_box, x, y):
         self.put(drag_box, x, y)
@@ -22,14 +16,10 @@ class DropArea(Gtk.Layout):
         drag_box.connect('motion-notify-event', self.on_drag_box_mouse_motion)
 
     def on_drag_box_button_press(self, widget, event):
-        # print('on drag box button press')
         self.press_point = Point(event.x, event.y)
 
     def on_drag_box_button_release(self, widget, event):
-        print('on drag box button release')
-        widget.set_state(State.SELECTED)
-        widget.queue_draw()
-
+        pass
 
     def on_drag_box_mouse_motion(self, widget, event):
         (x, y) = self.get_absolute_coord(widget, event.x, event.y)

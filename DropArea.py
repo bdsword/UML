@@ -3,6 +3,7 @@ from Point import Point
 import State
 import cairo
 
+
 class DropArea(Gtk.Layout):
     def __init__(self):
         super(DropArea, self).__init__()

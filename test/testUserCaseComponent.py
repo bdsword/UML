@@ -15,7 +15,7 @@ class TestWindow(Gtk.Window):
         self.fixed = Gtk.Fixed()
         self.fixed.put(self.drop_area, 100, 100)
         self.add(self.fixed)
-
+        
         drag_box = UserCaseComponent(100, 100)
         drag_box.set_selected_block_size(8)
         drag_box.set_size(300, 120)

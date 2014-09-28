@@ -10,7 +10,7 @@ class UMLComponent(DragBox):
 
         self.connect('draw', self.on_draw)
         self.set_app_paintable(True)
-        self.state = State.NORMAL
+        self.state = State.UMLComponent.NORMAL
         self.layout = Gtk.Layout()
         self.add(self.layout)
 

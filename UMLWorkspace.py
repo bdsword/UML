@@ -38,7 +38,6 @@ class UMLWorkspace(DropArea):
     def on_button_release(self, widget, event):
         self.state = State.UMLWorkspace.NORMAL
         self.select_end_point = (event.x ,event.y)
-        print(self.select_start_point, self.select_end_point)
         # TODO: Make a real select rather than just show a rectangle
         selected_rectangle = ToolSets.make_rectangle(self.select_start_point, self.select_end_point)
         self.foreach(self.update_component_selection, selected_rectangle)
@@ -57,7 +56,6 @@ class UMLWorkspace(DropArea):
 
     def on_mouse_motion(self, widget, event):
         if self.state == State.UMLWorkspace.SELECTING:
-            print('on mouse motion: selecting')
             self.select_end_point = (event.x ,event.y)
             self.queue_draw()
 

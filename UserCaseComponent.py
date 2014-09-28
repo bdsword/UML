@@ -23,7 +23,6 @@ class UserCaseComponent(UMLComponent):
 
     def remove_selected_blocks(self):
         for selected_block in self.selected_blocks:
-            print("Debug")
             self.layout.remove(selected_block)
 
     def rearrange_widget(self):

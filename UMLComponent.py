@@ -30,7 +30,7 @@ class UMLComponent(DragBox):
 
     def on_draw(self, widget, cairo_context):
         self.draw_background(cairo_context)
-        if self.state == State.SELECTED:
+        if self.state == State.UMLComponent.SELECTED:
             if self.show_selected_line:
                 self.draw_selected_line(cairo_context)
             if self.selected_blocks is None:

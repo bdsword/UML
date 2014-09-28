@@ -22,8 +22,8 @@ class UMLComponent(DragBox):
         self.selected_line_dashes = [6.0]
         self.width = width
         self.height = height
-        self.set_size_request(width+2*self.selected_block_size,
-                              height+2*self.selected_block_size)
+        self.set_size_request(width + 2 * self.selected_block_size,
+                              height + 2 * self.selected_block_size)
         self.selected_blocks = None
 
     def set_state(self, state):
@@ -36,9 +36,13 @@ class UMLComponent(DragBox):
                 self.draw_selected_line(cairo_context)
             if self.selected_blocks is None:
                 self.selected_blocks = self.setup_selected_blocks()
-            # TODO: Fix infinite loop into draw when move component
-            # else:
-            #     self.rearrange_widget()
+                # TODO: Fix infinite loop into draw when move component
+                # else:
+                # self.rearrange_widget()
+        elif self.state == State.UMLComponent.NORMAL:
+            if self.selected_blocks is not None:
+                self.remove_selected_blocks()
+                self.selected_blocks = None
 
     def rearrange_widget(self):
         raise NotImplementedError
@@ -51,6 +55,9 @@ class UMLComponent(DragBox):
     def setup_selected_blocks(self):
         raise NotImplementedError
 
+    def remove_selected_blocks(self):
+        raise NotImplementedError
+
     def draw_selected_line(self, cairo_context):
         raise NotImplementedError
 
@@ -61,10 +68,10 @@ class UMLComponent(DragBox):
 
     def get_visible_allocation(self):
         real_allocation = self.get_allocation()
-        visible_allocation = cairo.RectangleInt(real_allocation.x+self.selected_block_size,
-                                             real_allocation.y+self.selected_block_size,
-                                             self.width,
-                                             self.height)
+        visible_allocation = cairo.RectangleInt(real_allocation.x + self.selected_block_size,
+                                                real_allocation.y + self.selected_block_size,
+                                                self.width,
+                                                self.height)
         return visible_allocation
 
     def set_selected_line_visible(self, setting):
@@ -81,5 +88,5 @@ class UMLComponent(DragBox):
         self.update_component_size()
 
     def update_component_size(self):
-        self.set_size_request(self.width+2*self.selected_block_size,
-                              self.height+2*self.selected_block_size)
+        self.set_size_request(self.width + 2 * self.selected_block_size,
+                              self.height + 2 * self.selected_block_size)

@@ -21,6 +21,11 @@ class UserCaseComponent(UMLComponent):
             selected_blocks.append(block)
         return selected_blocks
 
+    def remove_selected_blocks(self):
+        for selected_block in self.selected_blocks:
+            print("Debug")
+            self.layout.remove(selected_block)
+
     def rearrange_widget(self):
         # #############
         #     0      #

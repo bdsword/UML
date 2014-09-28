@@ -90,3 +90,7 @@ class UMLComponent(DragBox):
     def update_component_size(self):
         self.set_size_request(self.width + 2 * self.selected_block_size,
                               self.height + 2 * self.selected_block_size)
+
+    def convert_coordinate(self, point):
+        allocation = self.get_allocation()
+        return [allocation.x + point[0], allocation.y + point[1]]

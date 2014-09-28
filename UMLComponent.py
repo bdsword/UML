@@ -2,6 +2,7 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 from DragBox import DragBox
 import State
+import cairo
 
 
 class UMLComponent(DragBox):
@@ -57,6 +58,14 @@ class UMLComponent(DragBox):
         self.width = width
         self.height = height
         self.update_component_size()
+
+    def get_visible_allocation(self):
+        real_allocation = self.get_allocation()
+        visible_allocation = cairo.RectangleInt(real_allocation.x+self.selected_block_size,
+                                             real_allocation.y+self.selected_block_size,
+                                             self.width,
+                                             self.height)
+        return visible_allocation
 
     def set_selected_line_visible(self, setting):
         self.show_selected_line = setting

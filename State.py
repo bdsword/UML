@@ -7,4 +7,5 @@ class UMLComponent(Enum):
     DRAGGING = 3
 
 class UMLWorkspace(Enum):
-    SELECTING = 1
+    NORMAL = 1
+    SELECTING = 2

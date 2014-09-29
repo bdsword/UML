@@ -13,6 +13,7 @@ class UMLWorkspace(DropArea):
         self.state = State.UMLWorkspace.NORMAL
         self.select_start_point = None
         self.select_end_point = None
+        self.relation_lines = []
 
         self.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
         self.add_events(Gdk.EventMask.BUTTON_RELEASE_MASK)
@@ -30,6 +31,7 @@ class UMLWorkspace(DropArea):
                                     selected_width, selected_height)
             cairo_context.set_source_rgba(0.8, 0.1, 0.1, 0.6)
             cairo_context.fill()
+        self.draw_relation_lines(cairo_context)
 
     def on_button_press(self, widget, event):
         self.state = State.UMLWorkspace.SELECTING
@@ -70,3 +72,13 @@ class UMLWorkspace(DropArea):
         if unchecked_widget is not selected_target:
             unchecked_widget.set_state(State.UMLComponent.NORMAL)
             unchecked_widget.queue_draw()
+
+    def add_relation_line(self, relation_line):
+        self.relation_lines.append(relation_line)
+
+    def remove_relation_line(self, relation_line):
+        self.relation_lines.remove(relation_line)
+
+    def draw_relation_lines(self, cairo_context):
+        for relation_line in self.relation_lines:
+            relation_line.draw(cairo_context)

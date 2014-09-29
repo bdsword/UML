@@ -3,17 +3,19 @@ from gi.repository import Gtk
 from DragBox import DragBox
 import State
 import cairo
+from Informer import Informer
 
-
-class UMLComponent(DragBox):
+class UMLComponent(Informer, DragBox):
     def __init__(self, width, height):
         super(UMLComponent, self).__init__()
-
         self.connect('draw', self.on_draw)
         self.set_app_paintable(True)
         self.state = State.UMLComponent.NORMAL
         self.layout = Gtk.Layout()
         self.add(self.layout)
+
+        # setup event for register
+        self.add_event('on_draw')
 
         # init class field
         self.selected_block_size = 10
@@ -43,6 +45,7 @@ class UMLComponent(DragBox):
             if self.selected_blocks is not None:
                 self.remove_selected_blocks()
                 self.selected_blocks = None
+        self.fire('on_draw', widget=widget)
 
     def rearrange_widget(self):
         raise NotImplementedError
@@ -94,3 +97,7 @@ class UMLComponent(DragBox):
     def convert_coordinate(self, point):
         allocation = self.get_allocation()
         return [allocation.x + point[0], allocation.y + point[1]]
+
+    def get_coordinate(self):
+        allocation = self.get_visible_allocation()
+        return (allocation.x, allocation.y)
